@@ -1,28 +1,30 @@
 import React from "react";
-
+import { Link, useMatch, useResolvedPath } from "react-router-dom";
 const Navbar = () => {
   return (
     <div>
       <nav className="nav">
-        <a href="/" className="title">
+        <Link to="/" className="title">
           Masquerade
-        </a>
+        </Link>
         <ul>
-          <CustomLink href="/characters">Characters</CustomLink>
-          <CustomLink href="/groups">Groups</CustomLink>
+          <CustomLink to="/characters">Characters</CustomLink>
+          <CustomLink to="/groups">Groups</CustomLink>
         </ul>
       </nav>
     </div>
   );
 };
 
-const CustomLink = ({ href, children, ...props }) => {
+const CustomLink = ({ to, children, ...props }) => {
+  const resolvedPath = useResolvedPath(to);
+  const isActive = useMatch({ path: resolvedPath.pathname, end: true });
   const path = window.location.pathname;
   return (
-    <li className={path === href ? "active" : ""}>
-      <a href={href} {...props}>
+    <li className={isActive ? "active" : ""}>
+      <Link to={to} {...props}>
         {children}
-      </a>
+      </Link>
     </li>
   );
 };

@@ -3,24 +3,19 @@ import Navbar from "./components/Navbar";
 import Characters from "./pages/Characters";
 import Groups from "./pages/Groups";
 import Home from "./pages/Home";
+import { Route, Routes } from "react-router-dom";
 
 const App = () => {
-  let component;
-  switch (window.location.pathname) {
-    case "/":
-      component = <Home />;
-      break;
-    case "/characters":
-      component = <Characters />;
-      break;
-    case "/groups":
-      component = <Groups />;
-      break;
-  }
   return (
     <>
       <Navbar />
-      <div className="container">{component}</div>
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/characters" element={<Characters />} />
+          <Route path="/groups" element={<Groups />} />
+        </Routes>
+      </div>
     </>
   );
 };

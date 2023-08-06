@@ -50,3 +50,7 @@ body {
 .nav li:hover {
   background-color: rgb(214, 12, 204);
 }
+
+.nomargin {
+  margin: 0;
+}

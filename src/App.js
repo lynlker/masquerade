@@ -3,9 +3,10 @@ import Navbar from "./components/Navbar";
 import Characters from "./pages/Characters";
 import Groups from "./pages/Groups";
 import Home from "./pages/Home";
+import AnneMarie from "./pages/characters/AnneMarie";
+import Voice from "./pages/characters/Voice";
+
 import { Route, Routes } from "react-router-dom";
-import AnneMarie from "./pages/character/AnneMarie";
-import Voice from "./pages/character/Voice";
 
 const App = () => {
   return (
@@ -16,8 +17,8 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/characters" element={<Characters />} />
           <Route path="/groups" element={<Groups />} />
-          <Route path="/character/AnneMarie" element={<AnneMarie />} />
-          <Route path="/character/Voice" element={<Voice />} />
+          <Route path="/characters/AnneMarie" element={<AnneMarie />} />
+          <Route path="/characters/Voice" element={<Voice />} />
         </Routes>
       </div>
     </>

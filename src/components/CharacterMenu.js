@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import "./CharacterMenu.css";
 import HeroSlider, { Slide } from "hero-slider";
 
@@ -18,6 +18,18 @@ const CharacterMenu = () => {
     },
     // Add more character objects as needed
   ];
+  const CustomLink = ({ to, children, ...props }) => {
+    const resolvedPath = useResolvedPath(to);
+    const isActive = useMatch({ path: resolvedPath.pathname, end: true });
+    const path = window.location.pathname;
+    return (
+      <li className={isActive ? "active" : ""}>
+        <Link to={to} {...props}>
+          {children}
+        </Link>
+      </li>
+    );
+  };
 
   return (
     // JSX code for rendering the character menu
@@ -41,8 +53,10 @@ const CharacterMenu = () => {
           }}
         >
           <div className="slide-content">
-            <img src={character.image} alt={character.name} />
-            <p>{character.name}</p>
+            <Link to={character.id}>
+              <img src={character.image} alt={character.name} />
+              <p>{character.name}</p>
+            </Link>
           </div>
         </Slide>
       ))}
